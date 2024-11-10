@@ -1,5 +1,5 @@
 -- Crear tabla Proveedor
-CREATE TABLE Proveedor (
+CREATE TABLE proveedor (
     id_proveedor INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     direccion VARCHAR(255),
@@ -10,14 +10,14 @@ CREATE TABLE Proveedor (
 );
 
 -- Crear tabla Marca
-CREATE TABLE Marca (
+CREATE TABLE marca (
     id_marca INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT
 );
 
 -- Crear tabla Producto
-CREATE TABLE Producto (
+CREATE TABLE producto (
     id_producto INT AUTO_INCREMENT PRIMARY KEY,
     id_proveedor INT,
     id_marca INT,
@@ -27,22 +27,22 @@ CREATE TABLE Producto (
     unidad_medida VARCHAR(50),
     fecha_creacion DATE NOT NULL,
     estado ENUM('disponible', 'no disponible') DEFAULT 'disponible',
-    FOREIGN KEY (id_proveedor) REFERENCES Proveedor(id_proveedor) ON DELETE SET NULL,
-    FOREIGN KEY (id_marca) REFERENCES Marca(id_marca) ON DELETE SET NULL
+    FOREIGN KEY (id_proveedor) REFERENCES proveedor(id_proveedor) ON DELETE SET NULL,
+    FOREIGN KEY (id_marca) REFERENCES marca(id_marca) ON DELETE SET NULL
 );
 
 -- Crear tabla Categoria
-CREATE TABLE Categoria (
+CREATE TABLE categoria (
     id_categoria INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     descripcion TEXT
 );
 
--- Crear tabla Producto_Categoria (Tabla de asociación)
-CREATE TABLE Producto_Categoria (
+-- Crear tabla Producto_Categoria (Tabla de asociaciï¿½n)
+CREATE TABLE producto_categoria (
     id_producto INT,
     id_categoria INT,
     PRIMARY KEY (id_producto, id_categoria),
-    FOREIGN KEY (id_producto) REFERENCES Producto(id_producto) ON DELETE CASCADE,
-    FOREIGN KEY (id_categoria) REFERENCES Categoria(id_categoria) ON DELETE CASCADE
+    FOREIGN KEY (id_producto) REFERENCES producto(id_producto) ON DELETE CASCADE,
+    FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria) ON DELETE CASCADE
 );
