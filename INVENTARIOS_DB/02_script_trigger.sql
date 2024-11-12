@@ -1,7 +1,5 @@
-DELIMITER $$
-
 CREATE TRIGGER actualizar_inventario
-AFTER INSERT ON transaccioninventario
+BEFORE INSERT ON transaccioninventario
 FOR EACH ROW
 BEGIN
     -- Verificar si el inventario ya existe
@@ -26,6 +24,4 @@ BEGIN
             SET NEW.inventario_id = LAST_INSERT_ID();
         END IF;
     END IF;
-END$$
-
-DELIMITER ;
+END;
